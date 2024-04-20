@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator sederhana</title>
+</head>
+<body>
+    <!-- Angka pertama -->
+    <label for="angkaAwal">Masukan Angka</label><br>
+    <input type="number" name="angkaAwal" id="angkaAwal"><br>
+    <!-- Angka terakhir -->
+    <label for="angkaAkhir">Masukan Angka</label><br>
+    <input type="number" name="angkaAkhir" id="angkaAkhir"><br><br>
+
+    <!-- Operasi yang akan dilakukan -->
+    <!-- Jika tombolnya ditekan maka akan langsung melakukan operasi tersebut -->
+    <button onclick="kalkulator('tambah')">+ Tambah</button>
+    <button onclick="kalkulator('kurang')">- Kurang</button>
+    <button onclick="kalkulator('kali')">x Kali</button>
+    <button onclick="kalkulator('bagi')">/ Bagi</button> <br><br>
+
+    <!-- Hasil dari perhitungan -->
+    <label for="total">Total</label><br>
+    <textarea type="text" name="total" id="total"></textarea>
+
+    <script>
+        function kalkulator(operasi)
+        {
+            // Mendefinisikan angkaAwal, angkaAkhir, dan hasil sebagai variabel
+            let angka1 = parseFloat(document.getElementById("angkaAwal").value);
+            let angka2 = parseFloat(document.getElementById("angkaAkhir").value);
+            let hasil;
+
+            // Melakukan perbandingan jenis operasi dan mengeksekusi fungsi yang sesuai dengan operasi
+            switch(operasi){
+                case 'tambah':
+                    hasil = angka1 + angka2;
+                    break;
+                case 'kurang':
+                    hasil = angka1 - angka2;
+                    break;
+                case 'kali':
+                    hasil = angka1 * angka2;
+                    break;
+                case 'bagi':
+                    // Mencegah pembagian dengan nol agar tidak menimbulkan error
+                    hasil = angka2 === 0 ? "Error : Tidak bisa dibagi dengan nol" : angka1 / angka2;
+                    break;
+                    // Jika perhitungan salah maka akan muncul pesan error
+                default :
+                    hasil = "Operasi invalid";
+            }
+            // Mengembalikan hasil perhitungan sebagai value dalam elemen teksarea total
+            document.getElementById('total').value = hasil;
+        }
+    </script>
+</body>
+</html>
